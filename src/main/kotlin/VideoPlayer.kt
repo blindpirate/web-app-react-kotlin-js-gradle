@@ -37,6 +37,9 @@ class VideoPlayer(props: VideoPlayerProps) : RComponent<VideoPlayerProps, RState
                     +"Mark as unwatched"
                 }
             }
+            div {
+
+            }
             styledDiv {
                 css {
                     display = Display.flex

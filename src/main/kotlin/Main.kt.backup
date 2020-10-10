@@ -1,0 +1,203 @@
+import common.ui.bootstrap.Dropdown
+import common.ui.bootstrap.DropdownButton
+import react.dom.*
+import kotlinx.browser.document
+import kotlinx.browser.window
+import kotlinx.css.*
+import org.w3c.dom.events.Event
+import react.RBuilder
+import react.RComponent
+import react.RProps
+import react.RState
+import react.setState
+import react_transition_group.CSSTransition
+import react_transition_group.TransitionGroup
+import styled.*
+
+data class Video(val id: Int, val title: String, val speaker: String, val videoUrl: String)
+
+class EventBus {
+    fun addEventListener(type: String, callback: ((Event) -> Unit)) {
+        window.addEventListener(type, callback)
+    }
+
+    //    fun addEventListener(type: String, callback: ((Event) -> Unit)?, options: dynamic = definedExternally)
+//    fun removeEventListener(type: String, callback: EventListener?, options: dynamic = definedExternally)
+//    fun removeEventListener(type: String, callback: ((Event) -> Unit)?, options: dynamic = definedExternally)
+    fun dispatchEvent(event: Event): Boolean {
+        return window.dispatchEvent(event)
+    }
+}
+
+//class MyEvent : Event {
+//    constructor() {
+//        super("hahaha")
+//    }
+//}
+
+fun main() {
+//    window.customElements.define("my-component", ::EventBus)
+//    val eventBus = EventBus()
+//
+//    window.setTimeout({
+//        val e = CustomEvent("hahaha").apply {
+//            initCustomEvent("hahaha", true, true, 123)
+//        }
+//        eventBus.dispatchEvent(e)
+//    }, 5000)
+//
+//
+//    eventBus.addEventListener("hahaha") {
+//        console.log((it as CustomEvent).detail)
+//    }
+
+    /*
+<Dropdown>
+  <Dropdown.Toggle variant="success" id="dropdown-basic">
+    Dropdown Button
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+  </Dropdown.Menu>
+</Dropdown>
+
+<DropdownButton id="dropdown-basic-button" title="Dropdown button">
+  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+</DropdownButton>
+     */
+
+    render(document.getElementById("root")) {
+        Dropdown {
+            DropdownToggle {
+                attrs.variant = "success"
+                attrs.id = "dropdown-basic"
+
+                +"Button"
+            }
+
+            DropdownMenu {
+                DropdownItem {
+                    attrs.href = "#/a1"
+
+                    +"Action"
+                }
+                DropdownItem {
+                    attrs.href = "#/a2"
+
+                    +"Action 2"
+                }
+            }
+        }
+
+        DropdownButton {
+            attrs.id = "dropdown-basic-button"
+            attrs.title = "Dropdown"
+
+            DropdownItem {
+                attrs.href = "#/a1"
+
+                +"Action"
+            }
+            DropdownItem {
+                attrs.href = "#/a2"
+
+                +"Action 2"
+            }
+        }
+//        child(TodoList::class) {
+//        }
+    }
+}
+
+data class Item(val text: String, val id: String)
+interface TodoListState : RState {
+    var items: List<Item>
+    var loading: Boolean
+}
+
+var counter = 0
+
+class TodoList : RComponent<RProps, TodoListState>() {
+    init {
+        window.setTimeout({
+            setState {
+                loading = true
+            }
+        }, 5000)
+    }
+
+    override fun TodoListState.init() {
+        items = listOf(
+            Item("111", "1"),
+            Item("222", "2"),
+            Item("333", "3")
+        )
+        loading = false
+    }
+
+    override fun RBuilder.render() {
+        TransitionGroup {
+            attrs.className = "todo-list"
+            if (state.loading) {
+                CSSTransition {
+                    counter++
+                    attrs.key = counter.toString()
+                    attrs.timeout = 1000
+                    attrs.classNames = "item"
+
+                    styledDiv {
+                        css {
+                            width = 100.vw
+                            height = 100.vh
+                            backgroundColor = Color.red
+                        }
+                    }
+                }
+            } else {
+                CSSTransition {
+                    counter++
+                    attrs.key = counter.toString()
+                    attrs.timeout = 1000
+                    attrs.classNames = "item"
+
+                    styledDiv {
+                        css {
+                            width = 100.vw
+                            height = 100.vh
+                            backgroundColor = Color.green
+                        }
+                    }
+                }
+            }
+
+
+            state.items.forEach { thisItem ->
+
+//                CSSTransition {
+//                    attrs.key = thisItem.id
+//                    attrs.timeout = 1000
+//                    attrs.classNames = "item"
+//
+//                    li {
+//                        button {
+//                            +"x"
+//                            attrs.onClickFunction = {
+//                                setState {
+//                                    val newItems = items.filter { it != thisItem }
+//                                    items = newItems
+//                                }
+//                            }
+//                        }
+//
+//                        +thisItem.text
+//                    }
+//                }
+            }
+        }
+    }
+}

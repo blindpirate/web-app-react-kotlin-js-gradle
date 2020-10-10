@@ -3,6 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello, Kotlin/JS!</title>
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+    />
+    <style>
+        .remove-btn {
+            margin-right: 0.5rem;
+        }
+
+        .item-enter {
+            opacity: 0;
+        }
+        .item-enter-active {
+            opacity: 1;
+            transition: opacity 1000ms ease-in;
+        }
+        .item-exit {
+            opacity: 1;
+        }
+        .item-exit-active {
+            opacity: 0;
+            transition: opacity 1000ms ease-in;
+        }
+
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+    </style>
 </head>
 <body>
     <div id="root"></div>

@@ -26,7 +26,10 @@ dependencies {
     implementation("org.jetbrains:kotlin-react:16.13.1-pre.110-kotlin-1.4.0")
     implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.110-kotlin-1.4.0")
     implementation(npm("react", "16.13.1"))
+    implementation(npm("react-bootstrap", "1.3.0"))
     implementation(npm("react-dom", "16.13.1"))
+    implementation(npm("react-transition-group", "4.4.1"))
+    implementation(npm("in-browser-download", "2.0.0"))
 
     //Kotlin Styled (chapter 3)
     implementation("org.jetbrains:kotlin-styled:1.0.0-pre.110-kotlin-1.4.0")

@@ -1,10 +1,9 @@
 import kotlinx.html.js.onClickFunction
-import kotlinx.browser.window
 import react.*
-import react.dom.*
+import react.dom.p
 
 
-external interface VideoListProps: RProps {
+interface VideoListProps: RProps {
     var videos: List<Video>
     var selectedVideo: Video?
     var onSelectVideo: (Video) -> Unit
